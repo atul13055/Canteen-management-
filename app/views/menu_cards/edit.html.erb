@@ -1,0 +1,26 @@
+
+<%= form_with model: @menu_card do |form| %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div><br>
+
+  <div>
+    <%= form.label :desc %>
+    <%= form.text_field :desc %>
+  </div><br>
+
+  <div >
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+

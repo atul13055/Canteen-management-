@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  qnty: 1
+  total: 1
+  user: one
+  menu_card: one
+
+two:
+  qnty: 1
+  total: 1
+  user: two
+  menu_card: two
