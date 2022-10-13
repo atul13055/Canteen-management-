@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_11_124049) do
+ActiveRecord::Schema.define(version: 2022_10_13_121905) do
 
   create_table "menu_cards", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2022_10_11_124049) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "passes", force: :cascade do |t|
+    t.integer "amount"
+    t.integer "user_id", null: false
+    t.integer "menu_card_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_card_id"], name: "index_passes_on_menu_card_id"
+    t.index ["user_id"], name: "index_passes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -47,4 +57,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_124049) do
 
   add_foreign_key "orders", "menu_cards"
   add_foreign_key "orders", "users"
+  add_foreign_key "passes", "menu_cards"
+  add_foreign_key "passes", "users"
 end

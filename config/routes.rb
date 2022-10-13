@@ -2,10 +2,11 @@ Rails.application.routes.draw do
  
   devise_for :users
   root to: "home#index"
-
+       
   resources :menu_cards do
     resources :users do
       resources :orders 
+        resources :passes
     end
   end
 
