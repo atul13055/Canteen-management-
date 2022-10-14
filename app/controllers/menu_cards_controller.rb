@@ -27,7 +27,7 @@ class MenuCardsController < ApplicationController
     end
 
 	def create 
-		debugger
+		#debugger
 		@menu_card = MenuCard.create(menu_parms)
 
 		 redirect_to root_path

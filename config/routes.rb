@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   resources :menu_cards do
     resources :users do
       resources :orders 
-        resources :passes
+        
     end
   end
-
+  resources :users do
+    resources :passes do
+      
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,4 +1,10 @@
-<h1>Order Detils </h1>
+<center>
+<h1>Order Detils </h1><br><br>
+Name:- <%= current_user.name %><br>
+Eamil:- <%= current_user.email %><br>
+Mobile :- <%= current_user.mobile %><br>
+
+
 
 <table>
   <thead>
@@ -6,22 +12,29 @@
       <th>Name</th>
       <th>Price</th>
       <th>Quntity<th>
-      <th colspan="3"></th>
+      <th>Total<th>
+      <th>Order Now<th>
+      <th>Delete Order</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.eager_load(:menu_card) do |order| %>
+    <% @orders.each  do |order| %>
    
        <tr> 
+        <td><%=  order.menu_card.name  %></td>
+        <td><%=  order.menu_card.price  %></td>
         <td><%= order.qnty %></td>
-        <td><%=  orders.menu_card.name  %></td>
-        
+        <td><% @amount = order.qnty * order.menu_card.price %></td>
+        <td><%= @amount %></td>
+        <td></td> 
+        <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
+        <td></td>
+        <td><%= link_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
        </tr>
-   
-    <% end %>
+     
+    <% end %> 
   </tbody>
 </table>
  </center>
-
- 

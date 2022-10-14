@@ -1,11 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  amount: 1
+  blance: 1
   user: one
-  menu_card: one
 
 two:
-  amount: 1
+  blance: 1
   user: two
-  menu_card: two

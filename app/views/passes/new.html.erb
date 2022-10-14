@@ -1,0 +1,16 @@
+
+<%= form_with model: @pass, url: user_passes_path, method: :post do |form| %>
+
+  <div>
+    <%= form.label :blance %>
+    <%= form.number_field :blance %>
+  </div><br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+

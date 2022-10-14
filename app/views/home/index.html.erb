@@ -10,8 +10,13 @@
 
 
 
- <%= link_to "create Items ",  new_menu_card_path %>
+ <%= link_to "create Items ",  new_menu_card_path %><br>
+ <%= link_to "Show order deatils  ",menu_card_user_orders_path(@menu_cards, current_user)  %>
+ <%= link_to "create Pass ",  new_user_pass_path(current_user) %><br>
+<% @passes.each do |pass|%>
+<%= pass.blance%>
 
+<% end %>
 
 
 <h1>Menu Cards</h1>
