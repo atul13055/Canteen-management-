@@ -38,3 +38,5 @@ class MenuCardsController < ApplicationController
      	 params.require(:menu_card).permit(:name, :desc,:price )
      end
 end
+
+

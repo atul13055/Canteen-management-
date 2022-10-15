@@ -6,35 +6,36 @@ Mobile :- <%= current_user.mobile %><br>
 
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Quntity<th>
-      <th>Total<th>
-      <th>Order Now<th>
-      <th>Delete Order</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @orders.each  do |order| %>
-   
-       <tr> 
-        <td><%=  order.menu_card.name  %></td>
-        <td><%=  order.menu_card.price  %></td>
-        <td><%= order.qnty %></td>
-        <td><% @amount = order.qnty * order.menu_card.price %></td>
-        <td><%= @amount %></td>
-        <td></td> 
-        <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
-        <td></td>
-        <td><%= link_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
-       </tr>
-     
-    <% end %> 
-  </tbody>
+ 
 </table>
  </center>
+<table class="table" >
+  <thead>
+    <tr>
+      
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+      <th scope="col">Order Now</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% running_total = 0 %>
+  <% @orders.each  do |order| %>
+    <tr>
+      <td><%=  order.menu_card.name  %></td>
+      <td><%=  order.menu_card.price  %></td>
+      <td><%= order.qnty %></td>
+      <td><%= order.qnty *  order.menu_card.price %></td>
+      <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
+      <td><%= link_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
+    </tr>
+  <% running_total= running_total+ (order.qnty * order.menu_card.price )%>
+   <% end %>
+  </tbody>
+</table>
+<div>
+  <div>Total Price: <%= running_total%>

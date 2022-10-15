@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_14_120957) do
+ActiveRecord::Schema.define(version: 2022_10_15_104700) do
 
   create_table "menu_cards", force: :cascade do |t|
     t.string "name"
@@ -31,13 +31,8 @@ ActiveRecord::Schema.define(version: 2022_10_14_120957) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "passes", force: :cascade do |t|
-    t.integer "blance"
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_passes_on_user_id"
-  end
+# Could not dump table "passes" because of following StandardError
+#   Unknown type 'boolen' for column 'check'
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
