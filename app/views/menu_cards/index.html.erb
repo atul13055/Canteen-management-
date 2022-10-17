@@ -1,0 +1,75 @@
+<center >
+<body >
+  <div>
+    
+      <%#= render 'search_form.html.erb' %>
+       <h2>Welcome To Apna Canteen</h2><br>
+       <% if user_signed_in? %>
+      <%= link_to 'Edit profile', edit_user_registration_path %> 
+      <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+      <% end %>
+       <br>
+      <h4>
+       Your Name:-  <strong><%= current_user.name %></strong><br>
+     </h4> 
+     <h4>Your Email:-  <strong><%= current_user.email %></strong></h4>
+
+
+     <%= link_to "create Items ",  new_menu_card_path %><br>
+     <%= link_to "Show order",menu_card_user_orders_path(@menu_cards, current_user)  %><br>
+     <% if current_user.pass.present? %>
+       <%# debugger %>
+         <%= link_to "Add Amount ",edit_user_pass_path(current_user, current_user.pass)%><br>
+      <% else %>
+         <%= link_to "create Pass ",  new_user_pass_path(current_user) %><br>
+      <% end %>
+
+     <% @passes.each do |pass|%>
+     <h4>Current Blance: <%= pass.blance%></h4>
+      <% end %>
+    </h4>
+  </div>
+    <h1>Menu Cards</h1>
+
+    </table>
+     </center>
+    <table class="table" >
+      <thead>
+        <tr>
+         <th scope="col"><%= sort_link(@q, :name,"Name", default_order: :asc)%></th>
+          <th scope="col">Description</th>
+          <th scope="col"><%= sort_link(@q, :name,"Price", default_order: :desc)%></th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+          <th scope="col">Order Now</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      <% @menu_cards.each do |menu_card| %>
+        <tr>
+          <td><%= menu_card.name %></td>
+            <td><%= menu_card.desc %></td>
+            <td><%= number_to_currency ( menu_card.price )%></td>
+            <td><%= link_to 'Edit', edit_menu_card_path(menu_card),class: "btn btn-outline-warning" %></td>
+            <td><%= link_to 'Destroy', menu_card, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-outline-danger" %></td>
+            <td><%= link_to 'Order Now', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary"  %>
+        </tr>
+
+       <% end %>
+      </tbody>
+    </div>
+    </div>
+    </table>
+</body>
+
+
+<!-- <style>
+body {
+  background-image: url(<%#= image_path('pexels.jpg')%>);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+</style> -->

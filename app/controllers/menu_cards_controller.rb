@@ -1,4 +1,12 @@
 class MenuCardsController < ApplicationController
+
+  def index
+     @q = MenuCard.ransack(params[:q])
+     @menu_cards = @q.result(distinct: true)
+     @passes = Pass.all
+   
+  end
+
   def new
 		@menu_card = MenuCard.new
 	end

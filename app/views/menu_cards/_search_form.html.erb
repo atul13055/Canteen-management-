@@ -1,0 +1,16 @@
+
+     <div class="card-body">
+      <%= search_form_for @q do |f| %>
+      <%#  debugger %>
+      <div class="row">
+        <div class="col-lg-center">
+            <%#= f.label :name_cont %>
+            <%= f.search_field :name_cont, placeholder: "search..." %>
+        </div>
+      </div>
+      <%= f.submit class:"btn btn-primary"%>
+      <% end %>
+  </div>
+
+<div class="card mt-5 mb-5">
+ <div class="card-body">
