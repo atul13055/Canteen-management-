@@ -5,23 +5,25 @@
   <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
   <% end %>
    <br>
+  <h4>
    Your Name:-  <strong><%= current_user.name %></strong><br>
-    Your Email:-  <strong><%= current_user.email %></strong>
-
+ </h4> 
+ <h4>Your Email:-  <strong><%= current_user.email %></strong></h4>
 
 
  <%= link_to "create Items ",  new_menu_card_path %><br>
- <%= link_to "Show order deatils  ",menu_card_user_orders_path(@menu_cards, current_user)  %><br>
- <% if current_user.pass == 1 %>
-  <% debugger %>
-   <%= link_to " Update Aamount ",  new_user_pass_path(current_user) %><br>
-   <% else %>
-    <%= link_to "create Pass ",  new_user_pass_path(current_user) %><br>
- <%  end %>
-<% @passes.each do |pass|%>
-<%= pass.blance%>
+ <%= link_to "Show order",menu_card_user_orders_path(@menu_cards, current_user)  %><br>
+ <% if current_user.pass.present? %>
+   <%# debugger %>
+     <%= link_to "Add Amount ",edit_user_pass_path(current_user, current_user.pass)%><br>
+  <% else %>
+     <%= link_to "create Pass ",  new_user_pass_path(current_user) %><br>
+ <% end %>
 
-<% end %>
+<% @passes.each do |pass|%>
+<h4>Current Blance: <%= pass.blance%></h4>
+  <% end %>
+</h4>
 
 
 <h1>Menu Cards</h1>
@@ -32,9 +34,13 @@
   <thead>
     <tr>
       
-      <th scope="col">Name</th>
+     <th scope="col">Name</th>
       <th scope="col">Desc</th>
       <th scope="col">Price</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Order Now</th>
+      
     </tr>
   </thead>
   <tbody>

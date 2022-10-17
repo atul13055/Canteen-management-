@@ -1,11 +1,13 @@
 <center>
-<h1>Order Detils </h1><br><br>
+<h1>Your Cart </h1><br><br>
 Name:- <%= current_user.name %><br>
 Eamil:- <%= current_user.email %><br>
 Mobile :- <%= current_user.mobile %><br>
 
-
-
+<% @passes.each do |pass|%>
+<h4>Current Blance: <%= pass.blance%></h4>
+  <% end %>
+</h4>
 
  
 </table>
@@ -20,22 +22,24 @@ Mobile :- <%= current_user.mobile %><br>
       <th scope="col">Total</th>
       <th scope="col">Order Now</th>
       <th scope="col">Delete</th>
+      <th scope="col">Pay Wuith Pass</th>
     </tr>
   </thead>
   <tbody>
-    <% running_total = 0 %>
+    <% @running_total = 0 %>
   <% @orders.each  do |order| %>
     <tr>
       <td><%=  order.menu_card.name  %></td>
       <td><%=  order.menu_card.price  %></td>
       <td><%= order.qnty %></td>
-      <td><%= order.qnty *  order.menu_card.price %></td>
+      <td><%= @qntyprice = order.qnty *  order.menu_card.price %></td>
       <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
       <td><%= link_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
+      <td><%= link_to "Pay With Pass", edit_user_pass_path(current_user, current_user.pass) %> </td>
     </tr>
-  <% running_total= running_total+ (order.qnty * order.menu_card.price )%>
+  <% @running_total= @running_total + @qntyprice %>
    <% end %>
   </tbody>
 </table>
 <div>
-  <div>Total Price: <%= running_total%>
+  <div>Total Price: <%= @running_total%>

@@ -1,17 +1,16 @@
-
+<h3>Create Your Pass</h3>
 <%= form_with model: @pass, url: user_passes_path, method: :post do |form| %>
   <div>
-    <%= form.label :blance %>
+    <%= form.label :opening_Blance%>
     <%= form.number_field :blance %>
   </div><br>
 <div>
-    <%= form.label :Check %>
+    <%= form.label :Confiramtion %>
     <%= form.check_box :check %>
   </div>
   <div>
     <%= form.submit %>
 <% end %>
-
 
 
 

@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index 
-  	
+  	 @passes = Pass.all
     @orders = Order.all
     #.where(menu_card_id: params[:menu_card_id])
   	#@orders = Order.all

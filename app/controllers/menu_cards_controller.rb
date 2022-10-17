@@ -7,7 +7,6 @@ class MenuCardsController < ApplicationController
 	def show 
         #debugger
 		 @menu_card = MenuCard.find(params[:id])
-
 	end
 
 	def edit
@@ -23,7 +22,6 @@ class MenuCardsController < ApplicationController
    	   @menu_card = MenuCard.find(params[:id])
         @menu_card.destroy
         redirect_to root_path
-    
     end
 
 	def create 

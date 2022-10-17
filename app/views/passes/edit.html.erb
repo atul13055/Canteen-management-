@@ -1,0 +1,12 @@
+<h3>Update your Pass Blance </h3>
+<%= form_with model: @pass, url: user_pass_path, method: :patch do |form| %>
+  <div>
+    <%= form.label :Add_Amount%>
+    <%= form.number_field :blance %>
+  </div>
+    <%= form.submit %>
+<% end %>
+
+
+
+

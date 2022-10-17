@@ -1,33 +1,27 @@
 class PassesController < ApplicationController
 	
 	def new
-		@pass = Pass.new
-		# @user = User.find(params[:user_id])
-  #       @pass= @user.build_pass(pass_params)
-  #       @pass.save
+	 @pass = Pass.new	
     end
-	def create
 
+	def create
+		debugger
 		@user = User.find(params[:user_id])
         @pass= @user.build_pass(pass_params)
         @pass.save
-
-
-	 # @pass = Pass.new
-		# debugger
-		# @pass.user_id= params[:user_id]
-  #      @pass.blance = params[:blance]
-  #      @pass.save
        redirect_to root_path
 	end
 
+    def edit
+      #@pass = User.find(params[:user_id])
+      @pass = Pass.find(params[:id])
+      @temp = @pass.blance
+    end
+
 	def update
-	 @pass = Pass.new
-		debugger
-		@pass.user_id= params[:user_id]
-       @pass.blance = params[:blance]
-       @pass.save
-       redirect_to root_path
+
+		@pass = Pass.update(pass_params)
+    redirect_to root_path
 	end
 
  private
