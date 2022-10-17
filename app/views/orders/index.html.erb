@@ -22,7 +22,9 @@ Mobile :- <%= current_user.mobile %><br>
       <th scope="col">Total</th>
       <th scope="col">Order Now</th>
       <th scope="col">Delete</th>
-      <th scope="col">Pay Wuith Pass</th>
+      <% if current_user.pass.present? %>
+       <th scope="col">Pay Wuith Pass</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -34,8 +36,10 @@ Mobile :- <%= current_user.mobile %><br>
       <td><%= order.qnty %></td>
       <td><%= @qntyprice = order.qnty *  order.menu_card.price %></td>
       <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
-      <td><%= link_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
-      <td><%= link_to "Pay With Pass", edit_user_pass_path(current_user, current_user.pass) %> </td>
+      <td><%= button_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
+      <% if current_user.pass.present? %>
+       <td><%= link_to "Pay With Pass", edit_user_pass_path(:id,current_user, current_user.pass) %> </td>
+      <% end %>
     </tr>
   <% @running_total= @running_total + @qntyprice %>
    <% end %>

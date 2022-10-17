@@ -1,8 +1,6 @@
 <center >
 <body >
   <div>
-    
-      <%#= render 'search_form.html.erb' %>
        <h2>Welcome To Apna Canteen</h2><br>
        <% if user_signed_in? %>
       <%= link_to 'Edit profile', edit_user_registration_path %> 
@@ -14,8 +12,10 @@
      </h4> 
      <h4>Your Email:-  <strong><%= current_user.email %></strong></h4>
 
-
+   <%if current_user.has_role? :admin %>
+   <h5>You Are Admin</h5>
      <%= link_to "create Items ",  new_menu_card_path %><br>
+   <% end %>
      <%= link_to "Show order",menu_card_user_orders_path(@menu_cards, current_user)  %><br>
      <% if current_user.pass.present? %>
        <%# debugger %>
@@ -35,12 +35,15 @@
      </center>
     <table class="table" >
       <thead>
+         <%= render 'search_form.html.erb' %>
         <tr>
          <th scope="col"><%= sort_link(@q, :name,"Name", default_order: :asc)%></th>
           <th scope="col">Description</th>
-          <th scope="col"><%= sort_link(@q, :name,"Price", default_order: :desc)%></th>
+          <th scope="col"><%= sort_link(@q, :price,"Price", default_order: :desc)%></th>
+        <%if current_user.has_role? :admin %>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
+        <% end %>
           <th scope="col">Order Now</th>
         </tr>
       </thead>
@@ -51,8 +54,10 @@
           <td><%= menu_card.name %></td>
             <td><%= menu_card.desc %></td>
             <td><%= number_to_currency ( menu_card.price )%></td>
+          <%if current_user.has_role? :admin %>
             <td><%= link_to 'Edit', edit_menu_card_path(menu_card),class: "btn btn-outline-warning" %></td>
-            <td><%= link_to 'Destroy', menu_card, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-outline-danger" %></td>
+            <td><%= button_to 'Destroy', menu_card, method: :delete, class: "btn btn-outline-danger" %></td>
+          <% end %>
             <td><%= link_to 'Order Now', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary"  %>
         </tr>
 
