@@ -5,7 +5,7 @@ class PassesController < ApplicationController
     end
 
 	def create
-		debugger
+		#debugger
 		@user = User.find(params[:user_id])
         @pass= @user.build_pass(pass_params)
         @pass.save
@@ -15,7 +15,7 @@ class PassesController < ApplicationController
     def edit
       #@pass = User.find(params[:user_id])
       @pass = Pass.find(params[:id])
-      @temp = @pass.blance
+      #@temp = @pass.blance
     end
 
 	def update
@@ -26,7 +26,7 @@ class PassesController < ApplicationController
 
  private
   def pass_params
-  	debugger
+  	#debugger
   	params.require(:pass).permit(:blance, :check)
   end
 end

@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     redirect_to menu_card_user_orders_path
   end
   def show
-    debugger
+    #debugger
   	 #@order = MenuCard.find(params[:menu_card_id])
      @order = Order.find(params[:id])
   end

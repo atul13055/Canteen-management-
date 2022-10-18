@@ -3,8 +3,8 @@ class MenuCardsController < ApplicationController
   def index
      @q = MenuCard.ransack(params[:q])
      @menu_cards = @q.result(distinct: true)
+     #debugger
      @passes = Pass.all
-   
   end
 
   def new
@@ -28,8 +28,7 @@ class MenuCardsController < ApplicationController
 
    def destroy
    	   @menu_card = MenuCard.find(params[:id])
-       @menu_card.destroy
-
+        @menu_card.destroy
         redirect_to root_path
     end
 

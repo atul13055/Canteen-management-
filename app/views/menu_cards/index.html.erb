@@ -13,7 +13,7 @@
      <h4>Your Email:-  <strong><%= current_user.email %></strong></h4>
 
    <%if current_user.has_role? :admin %>
-   <h5>You Are Admin</h5>
+     <h5>You Are Admin</h5>
      <%= link_to "create Items ",  new_menu_card_path %><br>
    <% end %>
      <%= link_to "Show order",menu_card_user_orders_path(@menu_cards, current_user)  %><br>
@@ -23,11 +23,12 @@
       <% else %>
          <%= link_to "create Pass ",  new_user_pass_path(current_user) %><br>
       <% end %>
-
-     <% @passes.each do |pass|%>
-     <h4>Current Blance: <%= pass.blance%></h4>
-      <% end %>
-    </h4>
+     
+       <% @passes.each do |pass|%>
+          <h4>Current Blance: <%= pass.blance%></h4>
+       <% end %>
+      
+  
   </div>
     <h1>Menu Cards</h1>
 
