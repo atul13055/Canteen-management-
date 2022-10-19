@@ -50,7 +50,7 @@
       </thead>
       <tbody>
         
-      <% @menu_cards.each do |menu_card| %>
+      <%  @menu_cards.each   do |menu_card| %>
         <tr>
           <td><%= menu_card.name %></td>
             <td><%= menu_card.desc %></td>
@@ -59,7 +59,7 @@
             <td><%= link_to 'Edit', edit_menu_card_path(menu_card),class: "btn btn-outline-warning" %></td>
             <td><%= button_to 'Destroy', menu_card, method: :delete, class: "btn btn-outline-danger" %></td>
           <% end %>
-            <td><%= link_to 'Order Now', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary"  %>
+            <td><%= link_to 'Add To Cart', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary"  %>
         </tr>
 
        <% end %>

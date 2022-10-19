@@ -38,7 +38,7 @@ Mobile :- <%= current_user.mobile %><br>
       <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
       <td><%= button_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
       <% if current_user.pass.present? %>
-       <td><%= link_to "Pay With Pass", edit_user_pass_path(:id,current_user, current_user.pass) %> </td>
+       <td><%= link_to "Pay With Pass", new_user_payment_path %> </td>
       <% end %>
     </tr>
   <% @running_total= @running_total + @qntyprice %>

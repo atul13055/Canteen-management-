@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_17_183951) do
+ActiveRecord::Schema.define(version: 2022_10_19_054816) do
 
   create_table "menu_cards", force: :cascade do |t|
     t.string "name"
@@ -33,6 +33,18 @@ ActiveRecord::Schema.define(version: 2022_10_17_183951) do
 
 # Could not dump table "passes" because of following StandardError
 #   Unknown type 'boolen' for column 'check'
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "finalamount"
+    t.integer "user_id", null: false
+    t.integer "menu_card_id", null: false
+    t.integer "pass_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_card_id"], name: "index_payments_on_menu_card_id"
+    t.index ["pass_id"], name: "index_payments_on_pass_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -70,4 +82,7 @@ ActiveRecord::Schema.define(version: 2022_10_17_183951) do
   add_foreign_key "orders", "menu_cards"
   add_foreign_key "orders", "users"
   add_foreign_key "passes", "users"
+  add_foreign_key "payments", "menu_cards"
+  add_foreign_key "payments", "passes"
+  add_foreign_key "payments", "users"
 end

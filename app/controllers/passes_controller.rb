@@ -13,14 +13,15 @@ class PassesController < ApplicationController
 	end
 
     def edit
-      #@pass = User.find(params[:user_id])
+    	debugger
       @pass = Pass.find(params[:id])
       #@temp = @pass.blance
     end
 
 	def update
-
-		@pass = Pass.update(pass_params)
+    debugger
+    @pass = Pass.find(params[:pass_id])
+		@pass = @pass.update(pass_params)
     redirect_to root_path
 	end
 
