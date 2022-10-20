@@ -4,6 +4,6 @@ class PaymentsController < ApplicationController
   end 
 
   def create 
-   
+   find
   end
 end

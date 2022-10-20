@@ -20,7 +20,7 @@ class PassesController < ApplicationController
 
 	def update
     debugger
-    @pass = Pass.find(params[:pass_id])
+    @pass = Pass.find(params[:id])
 		@pass = @pass.update(pass_params)
     redirect_to root_path
 	end
