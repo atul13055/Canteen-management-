@@ -3,7 +3,6 @@ class MenuCardsController < ApplicationController
   def index
      @q = MenuCard.ransack(params[:q])
      @menu_cards = @q.result(distinct: true)
-     #debugger
      @passes = Pass.all.where(user_id:current_user)
   end
 
