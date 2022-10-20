@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 	end
 
   def create
-  	debugger 
+  	#debugger 
     @menu_card = MenuCard.find(params[:menu_card_id])
     @order = @menu_card.orders.new(order_params.merge(user_id: current_user.id))
     @order.total = (@order.qnty *  @order.menu_card.price)
