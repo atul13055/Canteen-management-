@@ -10,10 +10,11 @@ class OrdersController < ApplicationController
 	end
 
   def create
-  	#debugger
+  	debugger 
     @menu_card = MenuCard.find(params[:menu_card_id])
-    @order = @menu_card.orders.create(order_params.merge(user_id: current_user.id))
-    
+    @order = @menu_card.orders.new(order_params.merge(user_id: current_user.id))
+    @order.total = (@order.qnty *  @order.menu_card.price)
+    @order.save
     redirect_to menu_card_user_orders_path
   end
   def show
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
 
   private
    def order_params
+   
       params.require(:order).permit(:qnty)
    end	
 end
