@@ -3,7 +3,9 @@ class OrdersController < ApplicationController
   	 @passes = Pass.all.where(user_id:current_user)
      @orders = Order.all.where(user_id:current_user)
     #.where(menu_card_id: params[:menu_card_id])
-  	#@orders = Order.all
+    if current_user.has_role? :admin
+  	  @orders = Order.all
+    end
   end
   def new
 		@order = Order.new

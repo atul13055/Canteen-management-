@@ -15,7 +15,11 @@
     <%= form.label :price %>
     <%= form.number_field :price %>
   </div>
-
+  
+  <div >
+    <%= form.label :Image %>
+    <%= form.file_field :image, multiple: true %>
+  </div>
   <div>
     <%= form.submit %>
   </div>

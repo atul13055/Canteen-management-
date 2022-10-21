@@ -20,7 +20,8 @@ class MenuCardsController < ApplicationController
      @menu_card = MenuCard.find(params[:id])
     end
     def update
-      @menu_card = MenuCard.update(menu_parms)
+       @menu_card = MenuCard.find(params[:id])
+      @menu_card = @menu_card.update(menu_parms)
 
       redirect_to root_path
     end
@@ -40,7 +41,7 @@ class MenuCardsController < ApplicationController
 
     private
      def menu_parms
-     	 params.require(:menu_card).permit(:name, :desc,:price )
+     	 params.require(:menu_card).permit(:name, :desc,:price, image:[] )
      end
 end
 

@@ -3,6 +3,7 @@
 Name:- <%= current_user.name %><br>
 Eamil:- <%= current_user.email %><br>
 Mobile :- <%= current_user.mobile %><br>
+<%= link_to "Logout", destroy_user_session_path, method: :delete  %>
 
 <% @passes.each do |pass|%>
 <h4>Current Blance: <%= pass.blance%></h4>
@@ -15,13 +16,21 @@ Mobile :- <%= current_user.mobile %><br>
 <table class="table" >
   <thead>
     <tr>
-      
+      <% if current_user.has_role? :admin%>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Order By</th>
+      <% else %>
       <th scope="col">Name</th>
       <th scope="col">Price</th>
       <th scope="col">Quantity</th>
       <th scope="col">Total</th>
       <th scope="col">Order Now</th>
       <th scope="col">Delete</th>
+      <% end %>
       <% if current_user.pass.present? %>
        <th scope="col">Pay Wuith Pass</th>
       <% end %>
@@ -31,12 +40,21 @@ Mobile :- <%= current_user.mobile %><br>
     <% $running_total = 0 %>
   <% @orders.each  do |order| %>
     <tr>
+    <% if current_user.has_role? :admin %>
+      <td><%=  order.menu_card.name  %></td>
+      <td><%=  order.menu_card.price  %></td>
+      <td><%=  order.qnty %></td>
+      <td><%= $qntyprice = order.total %></td>
+      <td><%= button_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
+      <td><%= order.user.name %>
+      <% else %>
       <td><%=  order.menu_card.name  %></td>
       <td><%=  order.menu_card.price  %></td>
       <td><%=  order.qnty %></td>
       <td><%= $qntyprice = order.total %></td>
       <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
       <td><%= button_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
+    <% end %>
       <% if current_user.pass.present? %>
        <td><%= button_to "Pay With Pass", user_pass_order_payments_path(current_user.id, current_user.pass.id,order.id), method: :post %> </td>
       <% end %>

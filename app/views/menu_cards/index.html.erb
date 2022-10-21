@@ -15,7 +15,8 @@
    <%if current_user.has_role? :admin %>
      <h5>You Are Admin</h5>
      <%= link_to "create Items ",  new_menu_card_path %><br>
-   <% end %>
+      <%= link_to "Show orders",menu_card_user_orders_path(@menu_cards, current_user)  %><br>
+     <% else %>
      <%= link_to "Show order",menu_card_user_orders_path(@menu_cards, current_user)  %><br>
      <% if current_user.pass.present? %>
        <%# debugger %>
@@ -23,7 +24,7 @@
       <% else %>
          <%= link_to "create Pass ",  new_user_pass_path(current_user) %><br>
       <% end %>
-     
+    <% end %> 
        <% @passes.each do |pass|%>
           <h4>Current Blance: <%= pass.blance%></h4>
        <% end %>
@@ -44,22 +45,28 @@
         <%if current_user.has_role? :admin %>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
-        <% end %>
+          <% else %>
           <th scope="col">Order Now</th>
+        <% end %>
+          
         </tr>
       </thead>
       <tbody>
-        
       <%  @menu_cards.each   do |menu_card| %>
         <tr>
+
           <td><%= menu_card.name %></td>
             <td><%= menu_card.desc %></td>
             <td><%= number_to_currency ( menu_card.price )%></td>
+
           <%if current_user.has_role? :admin %>
             <td><%= link_to 'Edit', edit_menu_card_path(menu_card),class: "btn btn-outline-warning" %></td>
             <td><%= button_to 'Destroy', menu_card, method: :delete, class: "btn btn-outline-danger" %></td>
+            <% else %>
+              <td><%= link_to 'Add To Cart', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary"  %></td>
           <% end %>
-            <td><%= link_to 'Add To Cart', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary"  %>
+
+           
         </tr>
 
        <% end %>
