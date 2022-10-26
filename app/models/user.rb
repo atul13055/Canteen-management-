@@ -5,6 +5,8 @@ class User < ApplicationRecord
    has_many :orders, dependent: :destroy
    has_one :pass, dependent: :destroy
    has_many :payments, dependent: :destroy
+   has_one_attached :avatar, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

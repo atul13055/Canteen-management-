@@ -26,6 +26,11 @@
                       <label class="form-label" for="form3Example1m"><%= f.label :Email %></label>
                 </div>
 
+                <div class="form-outline mb-4">
+                  <%= f.file_field :avatar, autofocus: true,class: "form-control ", id: "form3Example1m" %>
+                      <label class="form-label" for="form3Example1m"><%= f.label :photo %></label>
+                </div>
+
                  <div class="form-outline mb-4">
                   <%= f.phone_field :mobile, autofocus: true, autocomplete: "email",class: "form-control ", id: "form3Example1m" %>
                       <label class="form-label" for="form3Example1m"><%= f.label :Mobile %></label>

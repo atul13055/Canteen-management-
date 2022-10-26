@@ -20,7 +20,7 @@ class PassesController < ApplicationController
 
 	def update
     #debugger
-    @pass = Pass.find(params[:id])
+     @pass = Pass.find(params[:id])
      @temp = @pass.blance
 		 a = @pass.blance.to_i+params[:pass][:blance].to_i
      @pass.update(blance: a)
