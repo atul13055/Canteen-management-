@@ -70,6 +70,7 @@
     </form>
   </div>
 </nav><br>
+
   <center >
      <h2>Welcome</h2> <br>
       <div class="col-md-4">
@@ -87,28 +88,33 @@
        <% end %>
  </div>
 </center><br><br>
-   
-  
+
 <div class="row row-cols-1 row-cols-md-3">
- <% @menu_cards.each   do |menu_card| %>
+  <%# debugger %> 
     <div class="col-md-4">
+    <% @menu_cards.each   do |menu_card| %>
       <div class="card h-100">
-        <%= image_tag menu_card.image, class: 'card-img-top', width: 200 if menu_card.image.attached? %><br>
+        <%= image_tag menu_card.image, class: 'card-img-top', width:300 if menu_card.image.attached? %><br>
         <div >
           <h3 class="card-title"> &nbsp Name:- <%= menu_card.name %></</h3>
           <h4 class="card-subtitle mb-2 text-muted">&nbsp price:- <%= number_to_currency ( menu_card.price )%></h4>
-          <h5  class="card-subtitle mb-2">&nbsp Description:- <%= menu_card.desc %></h5>
-              
+          <h6  class="card-subtitle mb-2">&nbsp Description:- <%= menu_card.desc %></h6>
+      
+             <%#= render partial: 'orders/new.html.erb' %>
+
         <%if current_user.has_role? :admin %>
            <%= button_to 'Edit', edit_menu_card_path(menu_card), method: :get, class: "btn btn-outline-info btn-lg btn-block"%><br>
            <%= button_to 'Destroy', menu_card, method: :delete, class: "btn btn-outline-danger btn-lg btn-block" %>
           <% else %>
-           <%= link_to 'Add To Cart', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary btn-lg btn-block"  %>
+       
+            <%= link_to 'Add To Cart', new_menu_card_user_order_path(menu_card.id,current_user),class: "btn btn-outline-primary btn-lg btn-block"  %>
         <% end %>
       </div> 
     </div>
   </div>
-  <%end %>
+<%end%>
+  <div>
+  </div>
 </div><br>
 
 
@@ -215,7 +221,7 @@ img:hover {
   opacity: 1.0;
 }
 
-
+ 
 </style>
 
 

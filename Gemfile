@@ -66,3 +66,7 @@ gem 'ransack'
 gem 'csv-importer'
 gem "rolify"
 gem 'activestorage'
+
+gem 'stripe-rails'
+gem "money-rails"
+gem "jquery-rails"

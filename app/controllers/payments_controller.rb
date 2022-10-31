@@ -1,10 +1,10 @@
 class PaymentsController < ApplicationController
 
   def create
-    #debugger
+    debugger
    @user = User.find(params[:user_id]) 
    @pass = Pass.find(params[:pass_id])
-   @order= @user.orders.find(params[:order_id])
+   @order = @user.orders.find(params[:order_id])
 
   if @pass.blance < @order.total
        flash[:notice] = "Add More Amount In your Pass" 

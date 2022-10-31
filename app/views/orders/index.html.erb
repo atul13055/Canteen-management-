@@ -12,6 +12,7 @@
       Eamil:- <%= current_user.email %><br>
       Mobile :- <%= current_user.mobile %><br>
       <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+      <%= link_to "Home ", root_path %>
       <% @passes.each do |pass|%>
         <h4>Current Blance: <%= pass.blance%></h4>
       <% end %>
@@ -34,9 +35,10 @@
       <th scope="col">Total</th>
       <th scope="col">Order Now</th>
       <th scope="col">Delete</th>
+      <th scope="col">Edit Qntity</th>
       <% end %>
       <% if current_user.pass.present? %>
-       <th scope="col">Pay Wuith Pass</th>
+       <th scope="col">Pay With Pass</th>
       <% end %>
     </tr>
   </thead>
@@ -58,6 +60,7 @@
       <td><%= $qntyprice = order.total %></td>
       <td><%= link_to " Pay Now ", menu_card_user_order_path(id: order.id) %> </td>
       <td><%= button_to "delete Order ", menu_card_user_order_path(id: order.id), method: :delete %> </td>
+       <td><%= link_to "Edit Qntity ", edit_menu_card_user_order_path(id: order.id) %> </td>
     <% end %>
       <% if current_user.pass.present? %>
        <td><%= button_to "Pay With Pass", user_pass_order_payments_path(current_user.id, current_user.pass.id,order.id), method: :post %> </td>
@@ -70,9 +73,8 @@
 <div>
 
   <div><h2>Total Price: <%= $running_total%></h2></div>
-
-
-      <div class="row row-cols-1 row-cols-md-3">
+   <%= button_to "Pay With Pass", user_pass_order_payments_path(current_user.id, current_user.pass.id,:order_id), method: :post, class: "btn btn-outline-danger btn-lg btn-block" %>
+    <div class="row row-cols-1 row-cols-md-3">
      <% @orders.each  do |order| %>
          <div class="col-md-4">
           <div class="card h-100">
@@ -97,7 +99,6 @@
     <%end %>
     </div>
   
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -105,11 +106,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
-
-
 
 
 <style type="text/css">

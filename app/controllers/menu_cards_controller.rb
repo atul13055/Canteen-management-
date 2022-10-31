@@ -1,9 +1,11 @@
 class MenuCardsController < ApplicationController
 
   def index
+   
      @q = MenuCard.ransack(params[:q])
      @menu_cards = @q.result(distinct: true)
      @passes = Pass.all.where(user_id:current_user)
+    
   end
 
   def new
@@ -11,10 +13,10 @@ class MenuCardsController < ApplicationController
 	end
 
 
-	def show 
-        #debugger
-		 @menu_card = MenuCard.find(params[:id])
-	end
+	# def show 
+ #        #debugger
+	# 	 @menu_card = MenuCard.find(params[:id])
+	# end
 
 	def edit
      @menu_card = MenuCard.new
@@ -29,7 +31,7 @@ class MenuCardsController < ApplicationController
     end
 
    def destroy
-   	  @menu_card = MenuCard.find(params[:id])
+   	   @menu_card = MenuCard.find(params[:id])
         @menu_card.destroy
         redirect_to root_path
     end
