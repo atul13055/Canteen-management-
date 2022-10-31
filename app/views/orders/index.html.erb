@@ -73,7 +73,7 @@
 <div>
 
   <div><h2>Total Price: <%= $running_total%></h2></div>
-   <%= button_to "Pay With Pass", user_pass_order_payments_path(current_user.id, current_user.pass.id,:order_id), method: :post, class: "btn btn-outline-danger btn-lg btn-block" %>
+   <%#= button_to "Pay With Pass", user_pass_order_payments_path(current_user.id, current_user.pass.id,:order_id), method: :post, class: "btn btn-outline-danger btn-lg btn-block" %>
     <div class="row row-cols-1 row-cols-md-3">
      <% @orders.each  do |order| %>
          <div class="col-md-4">
